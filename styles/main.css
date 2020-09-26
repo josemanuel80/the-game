@@ -43,3 +43,12 @@ body{
   height: 30px;
   width: 30px;
 }
+
+
+.grid div.snake {
+  border: 1px solid lightgrey;
+  background-color: blue;
+  
+  height: 30px;
+  width: 30px;
+}
