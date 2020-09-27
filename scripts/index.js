@@ -2,93 +2,91 @@
 // create the grid
 const width = 20;
 const height = 12;
-const grid = document.querySelector('.grid');
+const grid = document.querySelector(".grid");
 const cells = [];
 for (i = 0; i < 240; i++) {
-
-  const cell = document.createElement('div', id = i);
+  const cell = document.createElement("div", (id = i));
   grid.appendChild(cell);
-  // cell.innerText = id;
+  cell.innerText = id;
   cells.push(cell);
-
 }
 
 //create the snake
 
-const addsnake = (index) => cells[index].classList.add('snake');
+const addsnake = (index) => cells[index].classList.add("snake");
+const removesnake = (index) => cells[index].classList.remove("snake");
 
-//addsnake(2);
+const addFood = (index) => cells[index].classList.add("food");
 
-headPosition = 220;
-const x = headPosition % 10;
-const y = Math.floor(headPosition / 10);
+//const foodX = Math.floor(Math.random() * 20);
+//const foodY = Math.floor(Math.random() * 12);
+const foodposition = Math.floor(Math.random() * 240);
+//foodposition = 20;
+addFood(foodposition);
+headPosition = 0;
+let x = 0;
+let y = 0;
 
 //movement
 
 const handleKeyPress = (event) => {
   const { key } = event;
 
-  const x = headPosition % 10;
-  const y = Math.floor(headPosition / 10);
-
-  // 3 - Mover a Pikachu de un cuadro al otro dependiendo la orientación y la dirección
-  //  3.1  ¿Cómo puedo saber en que coordenas Pikachu se encuentra?
-
-  //removePika(headPosition);
-
+  // const x = headPosition % 10;
+  // const y = Math.floor(headPosition / 10);
+  //window.setInterval(function () {
   switch (key) {
-    case 'ArrowUp':
+    case "ArrowUp":
       if (y > 0) {
-        moveUp();
+        y = y - 1;
+        // clearInterval(interval);
+        removesnake(headPosition);
+        //interval = setInterval(function () {
+        headPosition = headPosition - width;
+        addsnake(headPosition);
+        //}, 1000);
       }
       break;
-    case 'ArrowRight':
-      if (x < width - 1) {
-        moveRight();
+    case "ArrowRight":
+      if (x < 20) {
+        x = x + 1;
+        removesnake(headPosition);
+        headPosition++;
+        addsnake(headPosition);
       }
       break;
-    case 'ArrowDown':
-      if (y < width - 1) {
-        moveDowun();
+    case "ArrowDown":
+      if (y < 12) {
+        y = y + 1;
+        removesnake(headPosition);
+        headPosition = headPosition + width;
+        addsnake(headPosition);
       }
       break;
-    case 'ArrowLeft':
+    case "ArrowLeft":
       if (x > 0) {
-        moveLeft();
+        x = x - 1;
+        removesnake(headPosition);
+        headPosition--;
+        addsnake(headPosition);
       }
 
       break;
     default:
-
       break;
   }
+  console.log(x, y);
+  console.log(headPosition);
   addsnake(headPosition);
+  //}, 1000);
 };
 
-function moveUp() {
-  window.setInterval(function () {
-    headPosition = headPosition - width;
-    addsnake(headPosition);
-  }, 1000);
-}
-function moveDown() {
-  window.setInterval(function () {
-    headPosition = headPosition + width;
-    addsnake(headPosition);
-  }, 1000);
-}
-function moveLeft() {
-  window.setInterval(function () {
-    headPosition--;
-    addsnake(headPosition);
-  }, 1000);
-}
-function moveRight() {
-  window.setInterval(function () {
-    headPosition++;
-    addsnake(headPosition);
-  }, 1000);
-}
+//let interval = setInterval(function () {
+
+//}, 1000);
+
 //addSnake(headPosition);
 
-window.addEventListener('keydown', handleKeyPress);
+window.addEventListener("keydown", handleKeyPress);
+
+

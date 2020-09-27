@@ -52,3 +52,10 @@ body{
   height: 30px;
   width: 30px;
 }
+.grid div.food {
+  border: 1px solid lightgrey;
+  background-color: red;
+
+  height: 30px;
+  width: 30px;
+}
