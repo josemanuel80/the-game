@@ -2,6 +2,7 @@
 // create the grid
 const width = 20;
 const height = 12;
+let size = 3;
 const grid = document.querySelector(".grid");
 const cells = [];
 for (i = 0; i < 240; i++) {
@@ -13,7 +14,9 @@ for (i = 0; i < 240; i++) {
 
 //create the snake
 const snake = [];
+
 const addsnake = (index) => cells[index].classList.add("snake");
+
 const removesnake = (index) => cells[index].classList.remove("snake");
 
 const addFood = (index) => cells[index].classList.add("food");
@@ -41,7 +44,7 @@ addFood(foodposition);
 headPosition = 0;
 let x = 0;
 let y = 0;
-let size = 3;
+
 function gameOver() {
   document.body.innerHTML = "GAME OVER";
 }
@@ -52,15 +55,17 @@ const eat = (index) => snake[index].classList.add("snake");
 
 */
 function maxLenght() {
-
+  return snake.length();
 }
 
 
 // Function grow
 //for (i = 0; i < size; i++) {
+
 addsnake(headPosition);
 
 snake.push(headPosition);
+
 //}
 
 
@@ -68,133 +73,150 @@ snake.push(headPosition);
 
 //movement
 
-
+let lastDirection = 0;
 
 const handleKeyPress = (event) => {
   const { key } = event;
-
-  switch (key) {
-
-    case "ArrowUp":
-      repeatUp = true;
-      repeatDown = false;
-      repeatLeft = false;
-      repeatRight = false;
-      break;
-    case "ArrowRight":
-
-      repeatUp = false;
-      repeatDown = false;
-      repeatLeft = false;
-      repeatRight = true;
-      break;
-    case "ArrowLeft":
-
-      repeatUp = false;
-      repeatDown = false;
-      repeatLeft = true;
-      repeatRight = false;
-      break;
-    case "ArrowDown":
-
-      repeatUp = false;
-      repeatDown = true;
-      repeatLeft = false;
-      repeatRight = false;
-      break;
-    default:
-      break;
-  }
-
-
-  // const x = headPosition % 10;
-  // const y = Math.floor(headPosition / 10);
-  window.setInterval(function () {
+  if (key != lastDirection) {
     switch (key) {
+
       case "ArrowUp":
-        if ((y >= 0) && repeatUp) {
-
-          y = y - 1;
-          if (y === -1) {
-            gameOver();
-          }
-
-          clearInterval(key);
-
-          removesnake(headPosition);
-
-        }
-        headPosition = headPosition - width;
-
-
-        addsnake(headPosition);
-        snake.push(headPosition);
-
-
+        repeatUp = true;
+        repeatDown = false;
+        repeatLeft = false;
+        repeatRight = false;
         break;
       case "ArrowRight":
-        if ((x < 20) && repeatRight) {
-          x = x + 1;
-          clearInterval(key);
-          removesnake(headPosition);
-          headPosition++;
 
-          addsnake(headPosition);
-          snake.push(headPosition);
-
-
-          if (x === 20) {
-            gameOver();
-          }
-        }
-        break;
-      case "ArrowDown":
-        // repeatDown = true;
-        if ((y <= 11) && repeatDown) {
-          y = y + 1;
-          if (y === 12) {
-            gameOver();
-          }
-          clearInterval(key);
-          removesnake(headPosition);
-          headPosition = headPosition + width;
-
-
-          addsnake(headPosition);
-          snake.push(headPosition);
-
-        }
+        repeatUp = false;
+        repeatDown = false;
+        repeatLeft = false;
+        repeatRight = true;
         break;
       case "ArrowLeft":
-        if ((x >= 0) && repeatLeft) {
-          x = x - 1;
-          clearInterval(key);
-          removesnake(headPosition);
-          headPosition--;
 
-          addsnake(headPosition);
-          snake.push(headPosition);
+        repeatUp = false;
+        repeatDown = false;
+        repeatLeft = true;
+        repeatRight = false;
+        break;
+      case "ArrowDown":
 
-
-          if (x === -1) {
-            gameOver();
-          }
-        }
-
+        repeatUp = false;
+        repeatDown = true;
+        repeatLeft = false;
+        repeatRight = false;
         break;
       default:
         break;
     }
 
-    if (headPosition === foodposition) {
-      eat(foodposition);
 
-    }
+    // const x = headPosition % 10;
+    // const y = Math.floor(headPosition / 10);
 
-    console.log(x, y);
-    console.log(snake);
-    addsnake(headPosition);
-  }, 1000);
+    window.setInterval(function () {
+      switch (key) {
+        case "ArrowUp":
+          if ((y >= 0) && repeatUp) {
+
+            y = y - 1;
+            if (y === -1) {
+              gameOver();
+            }
+
+            clearInterval(key);
+
+            removesnake(headPosition);
+
+          }
+          headPosition = headPosition - width;
+
+
+          if (headPosition === foodposition) {
+            addsnake(headPosition);
+            snake.push(headPosition);
+          }
+
+
+
+          break;
+        case "ArrowRight":
+          if ((x < 20) && repeatRight) {
+            x = x + 1;
+            clearInterval(key);
+            removesnake(headPosition);
+            headPosition++;
+
+            if (headPosition === foodposition) {
+              addsnake(headPosition);
+              snake.push(headPosition);
+            }
+
+
+
+            if (x === 20) {
+              gameOver();
+            }
+          }
+          break;
+        case "ArrowDown":
+          // repeatDown = true;
+          if ((y <= 11) && repeatDown) {
+            y = y + 1;
+            if (y === 12) {
+              gameOver();
+            }
+            clearInterval(key);
+            removesnake(headPosition);
+            headPosition = headPosition + width;
+
+            if (headPosition === foodposition) {
+              addsnake(headPosition);
+              snake.push(headPosition);
+            }
+
+          }
+          break;
+        case "ArrowLeft":
+          if ((x >= 0) && repeatLeft) {
+            x = x - 1;
+            clearInterval(key);
+            removesnake(headPosition);
+            headPosition--;
+
+            if (headPosition === foodposition) {
+              addsnake(headPosition);
+              snake.push(headPosition);
+            }
+
+
+            if (x === -1) {
+              gameOver();
+            }
+          }
+
+          break;
+        default:
+          break;
+
+      }
+
+
+
+      console.log(x, y);
+      console.log(snake);
+      console.log(event);
+      for (i = 0; i < size; i++) {
+        addsnake(headPosition);
+        snake.forEach(element => {
+          addsnake(element);
+
+        });
+      }
+    }, 1000);
+    lastDirection = event;
+  }
 };
 
 //let interval = setInterval(function () {
