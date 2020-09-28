@@ -18,6 +18,8 @@ const removesnake = (index) => cells[index].classList.remove("snake");
 
 const addFood = (index) => cells[index].classList.add("food");
 
+const eat = (index) => snake[index].classlist.add("snake");
+
 //const foodX = Math.floor(Math.random() * 20);
 //const foodY = Math.floor(Math.random() * 12);
 const foodposition = Math.floor(Math.random() * 240);
@@ -27,58 +29,125 @@ headPosition = 0;
 let x = 0;
 let y = 0;
 
+//const snake = [];
+
+
+function gameOver() {
+  document.body.innerHTML = "GAME OVER";
+}
+
+
 //movement
+
+
 
 const handleKeyPress = (event) => {
   const { key } = event;
 
-  // const x = headPosition % 10;
-  // const y = Math.floor(headPosition / 10);
-  //window.setInterval(function () {
   switch (key) {
+
     case "ArrowUp":
-      if (y > 0) {
-        y = y - 1;
-        // clearInterval(interval);
-        removesnake(headPosition);
-        //interval = setInterval(function () {
-        headPosition = headPosition - width;
-        addsnake(headPosition);
-        //}, 1000);
-      }
+      repeatUp = true;
+      repeatDown = false;
+      repeatLeft = false;
+      repeatRight = false;
       break;
     case "ArrowRight":
-      if (x < 20) {
-        x = x + 1;
-        removesnake(headPosition);
-        headPosition++;
-        addsnake(headPosition);
-      }
-      break;
-    case "ArrowDown":
-      if (y < 12) {
-        y = y + 1;
-        removesnake(headPosition);
-        headPosition = headPosition + width;
-        addsnake(headPosition);
-      }
+
+      repeatUp = false;
+      repeatDown = false;
+      repeatLeft = false;
+      repeatRight = true;
       break;
     case "ArrowLeft":
-      if (x > 0) {
-        x = x - 1;
-        removesnake(headPosition);
-        headPosition--;
-        addsnake(headPosition);
-      }
 
+      repeatUp = false;
+      repeatDown = false;
+      repeatLeft = true;
+      repeatRight = false;
       break;
-    default:
-      break;
+    case "ArrowDown":
+
+      repeatUp = false;
+      repeatDown = true;
+      repeatLeft = false;
+      repeatRight = false;
   }
-  console.log(x, y);
-  console.log(headPosition);
-  addsnake(headPosition);
-  //}, 1000);
+
+
+  // const x = headPosition % 10;
+  // const y = Math.floor(headPosition / 10);
+  window.setInterval(function () {
+    switch (key) {
+      case "ArrowUp":
+        if ((y >= 0) && repeatUp) {
+
+          y = y - 1;
+          if (y === -1) {
+            gameOver();
+          }
+          clearInterval(key);
+          removesnake(headPosition);
+
+          headPosition = headPosition - width;
+
+
+          addsnake(headPosition);
+
+        }
+        break;
+      case "ArrowRight":
+        if ((x < 20) && repeatRight) {
+          x = x + 1;
+          clearInterval(key);
+          removesnake(headPosition);
+          headPosition++;
+          addsnake(headPosition);
+          if (x === 20) {
+            gameOver();
+          }
+        }
+        break;
+      case "ArrowDown":
+        // repeatDown = true;
+        if ((y <= 11) && repeatDown) {
+          y = y + 1;
+          if (y === 12) {
+            gameOver();
+          }
+          clearInterval(key);
+          removesnake(headPosition);
+          headPosition = headPosition + width;
+          addsnake(headPosition);
+
+        }
+        break;
+      case "ArrowLeft":
+        if ((x >= 0) && repeatLeft) {
+          x = x - 1;
+          clearInterval(key);
+          removesnake(headPosition);
+          headPosition--;
+          addsnake(headPosition);
+          if (x === -1) {
+            gameOver();
+          }
+        }
+
+        break;
+      default:
+        break;
+    }
+
+    /*if (headPosition === foodposition) {
+      eat(foodposition);
+      // snake.push(eat);
+    }*/
+
+    console.log(x, y);
+    console.log(headPosition);
+    addsnake(headPosition);
+  }, 1000);
 };
 
 //let interval = setInterval(function () {
