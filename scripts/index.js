@@ -14,32 +14,10 @@ for (i = 0; i < 240; i++) {
 
 //create the snake
 const snake = [];
-
 const addsnake = (index) => cells[index].classList.add("snake");
-
 const removesnake = (index) => cells[index].classList.remove("snake");
-
 const addFood = (index) => cells[index].classList.add("food");
-
-/*for (i = 0; i < 3; i++) {
-  //const pieceOfSnake = window.createElement("snake", id = i);
-  //snake.push(pieceOfSnake);
- // snake[i] = foodposition;
-}*/
-//snake.forEach(Element => {
-//headPosition = document.getElementById(id);
-/*function Id() {
-  return id;*/
-/*
-}
-//snake.forEach(Id);
-  
-});
-*/
-//const foodX = Math.floor(Math.random() * 20);
-//const foodY = Math.floor(Math.random() * 12);
 const foodposition = Math.floor(Math.random() * 240);
-//foodposition = 20;
 addFood(foodposition);
 headPosition = 0;
 let x = 0;
@@ -48,33 +26,12 @@ let y = 0;
 function gameOver() {
   document.body.innerHTML = "GAME OVER";
 }
-/*function eat() {
-  document.body.innerHTML = "eat";
-}
-const eat = (index) => snake[index].classList.add("snake");
-
-*/
-function maxLenght() {
-  return snake.length();
-}
-
-
-// Function grow
-//for (i = 0; i < size; i++) {
-
+/*
 addsnake(headPosition);
 
 snake.push(headPosition);
-
-//}
-
-
-
-
-//movement
-
+*/
 let lastDirection = 0;
-
 const handleKeyPress = (event) => {
   const { key } = event;
   if (key != lastDirection) {
@@ -110,51 +67,27 @@ const handleKeyPress = (event) => {
       default:
         break;
     }
-
-
-    // const x = headPosition % 10;
-    // const y = Math.floor(headPosition / 10);
-
     window.setInterval(function () {
       switch (key) {
         case "ArrowUp":
           if ((y >= 0) && repeatUp) {
-
             y = y - 1;
             if (y === -1) {
               gameOver();
             }
-
-            clearInterval(key);
-
-            removesnake(headPosition);
-
+            headPosition = headPosition - width;
+            if (headPosition === foodposition) {
+              snake.push(headPosition);
+            }
           }
-          headPosition = headPosition - width;
-
-
-          if (headPosition === foodposition) {
-            addsnake(headPosition);
-            snake.push(headPosition);
-          }
-
-
-
           break;
         case "ArrowRight":
           if ((x < 20) && repeatRight) {
             x = x + 1;
-            clearInterval(key);
-            removesnake(headPosition);
             headPosition++;
-
             if (headPosition === foodposition) {
-              addsnake(headPosition);
               snake.push(headPosition);
             }
-
-
-
             if (x === 20) {
               gameOver();
             }
@@ -167,64 +100,36 @@ const handleKeyPress = (event) => {
             if (y === 12) {
               gameOver();
             }
-            clearInterval(key);
-            removesnake(headPosition);
             headPosition = headPosition + width;
-
             if (headPosition === foodposition) {
-              addsnake(headPosition);
               snake.push(headPosition);
             }
-
           }
           break;
         case "ArrowLeft":
           if ((x >= 0) && repeatLeft) {
             x = x - 1;
-            clearInterval(key);
-            removesnake(headPosition);
             headPosition--;
-
             if (headPosition === foodposition) {
-              addsnake(headPosition);
               snake.push(headPosition);
             }
-
-
             if (x === -1) {
               gameOver();
             }
           }
-
           break;
         default:
           break;
-
       }
-
-
+      addsnake(headPosition);
 
       console.log(x, y);
       console.log(snake);
       console.log(event);
-      for (i = 0; i < size; i++) {
-        addsnake(headPosition);
-        snake.forEach(element => {
-          addsnake(element);
-
-        });
-      }
     }, 1000);
     lastDirection = event;
   }
 };
-
-//let interval = setInterval(function () {
-
-//}, 1000);
-
-//addSnake(headPosition);
-
 window.addEventListener("keydown", handleKeyPress);
 
 
