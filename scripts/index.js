@@ -2,7 +2,7 @@
 // create the grid
 const width = 20;
 const height = 12;
-let size = 3;
+
 const grid = document.querySelector(".grid");
 const cells = [];
 for (i = 0; i < 240; i++) {
@@ -20,15 +20,17 @@ const addFood = (index) => cells[index].classList.add("food");
 const removeFood = (index) => cells[index].classList.remove("food");
 
 const foodposition = Math.floor(Math.random() * 240);
-addFood(foodposition);
+
 headPosition = 0;
 let x = 0;
 let y = 0;
+let size = 4;
+let timer = 1000;
 
 function gameOver() {
   document.body.innerHTML = "GAME OVER";
 }
-
+addFood(foodposition);
 
 /*
 addsnake(headPosition);
@@ -77,7 +79,8 @@ const handleKeyPress = (event) => {
         removesnake(i);
       }
     }
-    let size = 10;
+
+
     window.setInterval(function () {
       clearScreen();
       if (!(snake.includes(headPosition))) {
@@ -105,10 +108,10 @@ const handleKeyPress = (event) => {
             }
             headPosition = headPosition - width;
             if (headPosition === foodposition) {
-              removeFood(headPosition);
-              addFood(foodposition);
-              size++
-
+              removeFood(foodposition);
+              // addFood(foodposition);
+              size++;
+              timer = timer - 50;
             }
             removesnake(headPosition);
 
@@ -119,9 +122,10 @@ const handleKeyPress = (event) => {
             x = x + 1;
             headPosition++;
             if (headPosition === foodposition) {
-              removeFood(headPosition);
-              addFood(foodposition);
-              size++
+              removeFood(foodposition);
+              // addFood(foodposition);
+              size++;
+              timer = timer - 50;
             }
             if (x === 20) {
               gameOver();
@@ -138,9 +142,10 @@ const handleKeyPress = (event) => {
             }
             headPosition = headPosition + width;
             if (headPosition === foodposition) {
-              removeFood(headPosition);
-              addFood(foodposition);
-              size++
+              removeFood(foodposition);
+              // addFood(foodposition);
+              size++;
+              timer = timer - 50;
             }
             removesnake(headPosition);
           }
@@ -150,9 +155,10 @@ const handleKeyPress = (event) => {
             x = x - 1;
             headPosition--;
             if (headPosition === foodposition) {
-              removeFood(headPosition);
-              addFood(foodposition);
-              size++
+              removeFood(foodposition);
+              // addFood(foodposition);
+              size++;
+              timer = timer - 50;
             }
             if (x === -1) {
               gameOver();
@@ -169,8 +175,8 @@ const handleKeyPress = (event) => {
       console.log(snake);
       console.log(snake.length);
       //console.log(event);
-
-    }, 1000);
+      //addFood(foodposition);
+    }, timer);
 
 
     lastDirection = event;
