@@ -17,6 +17,8 @@ const snake = [];
 const addsnake = (index) => cells[index].classList.add("snake");
 const removesnake = (index) => cells[index].classList.remove("snake");
 const addFood = (index) => cells[index].classList.add("food");
+const removeFood = (index) => cells[index].classList.remove("food");
+
 const foodposition = Math.floor(Math.random() * 240);
 addFood(foodposition);
 headPosition = 0;
@@ -26,6 +28,8 @@ let y = 0;
 function gameOver() {
   document.body.innerHTML = "GAME OVER";
 }
+
+
 /*
 addsnake(headPosition);
 
@@ -67,9 +71,33 @@ const handleKeyPress = (event) => {
       default:
         break;
     }
+
+    function clearScreen() {
+      for (i = 0; i < 240; i++) {
+        removesnake(i);
+      }
+    }
+    let size = 10;
     window.setInterval(function () {
+      clearScreen();
+      if (!(snake.includes(headPosition))) {
+        snake.push(headPosition);
+
+      }
+      if (snake.length === size) {
+        snake.splice(0, 1);
+      }
+
+      snake.forEach(element => {
+        addsnake(element);
+
+      });
+      // addsnake(headPosition);
+
       switch (key) {
+
         case "ArrowUp":
+
           if ((y >= 0) && repeatUp) {
             y = y - 1;
             if (y === -1) {
@@ -77,8 +105,13 @@ const handleKeyPress = (event) => {
             }
             headPosition = headPosition - width;
             if (headPosition === foodposition) {
-              snake.push(headPosition);
+              removeFood(headPosition);
+              addFood(foodposition);
+              size++
+
             }
+            removesnake(headPosition);
+
           }
           break;
         case "ArrowRight":
@@ -86,11 +119,14 @@ const handleKeyPress = (event) => {
             x = x + 1;
             headPosition++;
             if (headPosition === foodposition) {
-              snake.push(headPosition);
+              removeFood(headPosition);
+              addFood(foodposition);
+              size++
             }
             if (x === 20) {
               gameOver();
             }
+            removesnake(headPosition);
           }
           break;
         case "ArrowDown":
@@ -102,8 +138,11 @@ const handleKeyPress = (event) => {
             }
             headPosition = headPosition + width;
             if (headPosition === foodposition) {
-              snake.push(headPosition);
+              removeFood(headPosition);
+              addFood(foodposition);
+              size++
             }
+            removesnake(headPosition);
           }
           break;
         case "ArrowLeft":
@@ -111,24 +150,32 @@ const handleKeyPress = (event) => {
             x = x - 1;
             headPosition--;
             if (headPosition === foodposition) {
-              snake.push(headPosition);
+              removeFood(headPosition);
+              addFood(foodposition);
+              size++
             }
             if (x === -1) {
               gameOver();
             }
+            removesnake(headPosition);
           }
           break;
         default:
           break;
       }
-      addsnake(headPosition);
+      // snake[0] = headPosition;
+      //addsnake(headPosition);
 
-      console.log(x, y);
       console.log(snake);
-      console.log(event);
+      console.log(snake.length);
+      //console.log(event);
+
     }, 1000);
+
+
     lastDirection = event;
   }
+
 };
 window.addEventListener("keydown", handleKeyPress);
 
