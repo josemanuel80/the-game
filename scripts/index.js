@@ -19,7 +19,7 @@ const removesnake = (index) => cells[index].classList.remove("snake");
 const addFood = (index) => cells[index].classList.add("food");
 const removeFood = (index) => cells[index].classList.remove("food");
 
-const foodposition = Math.floor(Math.random() * 240);
+let foodposition = Math.floor(Math.random() * 240);
 
 headPosition = 0;
 let x = 0;
@@ -32,11 +32,6 @@ function gameOver() {
 }
 addFood(foodposition);
 
-/*
-addsnake(headPosition);
-
-snake.push(headPosition);
-*/
 let lastDirection = 0;
 const handleKeyPress = (event) => {
   const { key } = event;
@@ -109,7 +104,8 @@ const handleKeyPress = (event) => {
             headPosition = headPosition - width;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              // addFood(foodposition);
+              foodposition=((foodposition*654654)%240);
+              addFood(foodposition);
               size++;
               timer = timer - 50;
             }
@@ -123,7 +119,8 @@ const handleKeyPress = (event) => {
             headPosition++;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              // addFood(foodposition);
+              foodposition=((foodposition*843573567)%240);
+              addFood(foodposition);
               size++;
               timer = timer - 50;
             }
@@ -143,7 +140,8 @@ const handleKeyPress = (event) => {
             headPosition = headPosition + width;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              // addFood(foodposition);
+              foodposition=((foodposition*3567567)%240);
+              addFood(foodposition);
               size++;
               timer = timer - 50;
             }
@@ -156,7 +154,7 @@ const handleKeyPress = (event) => {
             headPosition--;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              // addFood(foodposition);
+              addFood((foodposition*3737357)%240);
               size++;
               timer = timer - 50;
             }
@@ -172,8 +170,8 @@ const handleKeyPress = (event) => {
       // snake[0] = headPosition;
       //addsnake(headPosition);
 
-      console.log(snake);
-      console.log(snake.length);
+      console.log(foodposition);
+      //console.log(snake.length);
       //console.log(event);
       //addFood(foodposition);
     }, timer);
