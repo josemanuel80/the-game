@@ -90,7 +90,7 @@ const handleKeyPress = (event) => {
         addsnake(element);
 
       });
-      // addsnake(headPosition);
+      addsnake(headPosition);
 
       switch (key) {
 
@@ -104,7 +104,7 @@ const handleKeyPress = (event) => {
             headPosition = headPosition - width;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              foodposition=((foodposition*654654)%240);
+              foodposition = ((foodposition * 654654) % 240);
               addFood(foodposition);
               size++;
               timer = timer - 50;
@@ -119,7 +119,7 @@ const handleKeyPress = (event) => {
             headPosition++;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              foodposition=((foodposition*843573567)%240);
+              foodposition = ((foodposition * 843573567) % 240);
               addFood(foodposition);
               size++;
               timer = timer - 50;
@@ -140,7 +140,7 @@ const handleKeyPress = (event) => {
             headPosition = headPosition + width;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              foodposition=((foodposition*3567567)%240);
+              foodposition = ((foodposition * 3567567) % 240);
               addFood(foodposition);
               size++;
               timer = timer - 50;
@@ -154,7 +154,8 @@ const handleKeyPress = (event) => {
             headPosition--;
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              addFood((foodposition*3737357)%240);
+              foodposition = ((foodposition * 7823478234) % 240);
+              addFood(foodposition);
               size++;
               timer = timer - 50;
             }
