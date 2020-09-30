@@ -78,10 +78,10 @@ const handleKeyPress = (event) => {
 
     window.setInterval(function () {
       clearScreen();
-      if (!(snake.includes(headPosition))) {
+      /*if (!(snake.includes(headPosition))) {
         snake.push(headPosition);
 
-      }
+      }*/
       if (snake.length === size) {
         snake.splice(0, 1);
       }
@@ -102,6 +102,8 @@ const handleKeyPress = (event) => {
               gameOver();
             }
             headPosition = headPosition - width;
+            snake.push(headPosition);
+
             if (headPosition === foodposition) {
               removeFood(foodposition);
               foodposition = ((foodposition * 654654) % 240);
@@ -117,6 +119,8 @@ const handleKeyPress = (event) => {
           if ((x < 20) && repeatRight) {
             x = x + 1;
             headPosition++;
+            snake.push(headPosition);
+
             if (headPosition === foodposition) {
               removeFood(foodposition);
               foodposition = ((foodposition * 843573567) % 240);
@@ -138,6 +142,8 @@ const handleKeyPress = (event) => {
               gameOver();
             }
             headPosition = headPosition + width;
+            snake.push(headPosition);
+
             if (headPosition === foodposition) {
               removeFood(foodposition);
               foodposition = ((foodposition * 3567567) % 240);
@@ -152,6 +158,8 @@ const handleKeyPress = (event) => {
           if ((x >= 0) && repeatLeft) {
             x = x - 1;
             headPosition--;
+            snake.push(headPosition);
+
             if (headPosition === foodposition) {
               removeFood(foodposition);
               foodposition = ((foodposition * 7823478234) % 240);
