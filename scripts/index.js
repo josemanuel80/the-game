@@ -8,7 +8,7 @@ const cells = [];
 for (i = 0; i < 240; i++) {
   const cell = document.createElement("div", (id = i));
   grid.appendChild(cell);
-  cell.innerText = id;
+  // cell.innerText = id;
   cells.push(cell);
 }
 
@@ -78,10 +78,7 @@ const handleKeyPress = (event) => {
 
     window.setInterval(function () {
       clearScreen();
-      /*if (!(snake.includes(headPosition))) {
-        snake.push(headPosition);
 
-      }*/
       if (snake.length === size) {
         snake.splice(0, 1);
       }
@@ -90,7 +87,7 @@ const handleKeyPress = (event) => {
         addsnake(element);
 
       });
-      addsnake(headPosition);
+      // addsnake(headPosition);
 
       switch (key) {
 
@@ -102,8 +99,10 @@ const handleKeyPress = (event) => {
               gameOver();
             }
             headPosition = headPosition - width;
+            if (snake.includes(headPosition)) {
+              gameOver();
+            }
             snake.push(headPosition);
-
             if (headPosition === foodposition) {
               removeFood(foodposition);
               foodposition = ((foodposition * 654654) % 240);
@@ -119,8 +118,10 @@ const handleKeyPress = (event) => {
           if ((x < 20) && repeatRight) {
             x = x + 1;
             headPosition++;
+            if (snake.includes(headPosition)) {
+              gameOver();
+            }
             snake.push(headPosition);
-
             if (headPosition === foodposition) {
               removeFood(foodposition);
               foodposition = ((foodposition * 843573567) % 240);
@@ -142,8 +143,10 @@ const handleKeyPress = (event) => {
               gameOver();
             }
             headPosition = headPosition + width;
+            if (snake.includes(headPosition)) {
+              gameOver();
+            }
             snake.push(headPosition);
-
             if (headPosition === foodposition) {
               removeFood(foodposition);
               foodposition = ((foodposition * 3567567) % 240);
@@ -158,11 +161,13 @@ const handleKeyPress = (event) => {
           if ((x >= 0) && repeatLeft) {
             x = x - 1;
             headPosition--;
+            if (snake.includes(headPosition)) {
+              gameOver();
+            }
             snake.push(headPosition);
-
             if (headPosition === foodposition) {
               removeFood(foodposition);
-              foodposition = ((foodposition * 7823478234) % 240);
+              foodposition = ((foodposition * 89238923) % 240);
               addFood(foodposition);
               size++;
               timer = timer - 50;
