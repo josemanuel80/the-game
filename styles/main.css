@@ -48,14 +48,15 @@ body{
 .grid div.snake {
   border: 1px solid lightgrey;
   background-color: blue;
-  
+  border-color: lightblue;
+  border-radius: 10px;
   height: 30px;
   width: 30px;
 }
 .grid div.food {
   border: 1px solid lightgrey;
   background-color: red;
-
+border-radius: 50%;;
   height: 30px;
   width: 30px;
 }
