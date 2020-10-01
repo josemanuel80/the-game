@@ -5,7 +5,7 @@ This game is the classic Snake game which consist in to eat pieces of fruit as t
 ## what is it
 
 This is a web page in the way of a video game. It is a grid of squares in where are pieces of fruit that are eated by a snake. 
-The snake fills squares in the grid as it grows eating. The way the game ends is to hit a wall in the border of the grid or to hit a square of the snake itself.
+The snake fills squares in the grid as it grows eating. The way the game ends is to hit a wall in the border of the grid or to hit a square of the snake itself. As the snake eats the speed is increased.
 
 The functioning of the game is similar to the classic. This game, created in the middles of the 1970 decade, have lots of versions in multiple platforms,
 being maybe the most popular the Nokia 3310 Snake version, but still being versioned in modern platforms as Playstation 3, Xbox 360, PC, Mac OS, etc...
