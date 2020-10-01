@@ -1,8 +1,8 @@
-# the game
+# The game
  
 This game is the classic Snake game which consist in to eat pieces of fruit as the snake grows and dies if strikes with a wall or itself.
 
-## what is it
+## What is it
 
 This is a web page in the way of a video game. It is a grid of squares in where are pieces of fruit that are eated by a snake. 
 The snake fills squares in the grid as it grows eating. The way the game ends is to hit a wall in the border of the grid or to hit a square of the snake itself. As the snake eats the speed is increased.
@@ -14,7 +14,7 @@ The simple functioning and dificulty of this game makes an atractive and funny w
 
 This is a version of the most classic Snake, with the basics that makes this game great and fun.
 
-### tecnologies
+### Tecnologies
 
 This web page have been create with javascript, CSS and HTML tecnologies, and importing normalize to CSS to improbe browsers managing.
 
