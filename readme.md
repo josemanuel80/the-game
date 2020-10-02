@@ -22,7 +22,7 @@ This web page have been create with javascript, CSS and HTML tecnologies, and im
 
 clone the repository:
 
-git clone https://josemanuel80.github.io/the-game/
+git clone https://github.com/josemanuel80/the-game.git
 
 Get into the directory:
 
