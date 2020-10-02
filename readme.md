@@ -35,6 +35,8 @@ git pull origin master
 
 ## How to run
 
+Open the HTML file in a browser.
+
 As the game start the snake is in the top left corner as a square and have to move right or down to beguin it movement.
 
 ## Documentation
