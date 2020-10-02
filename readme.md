@@ -29,3 +29,5 @@ As the game start the snake is in the top left corner as a square and have to mo
 ## Documentation
 
 [requirements](./docs/readme.md)
+
+https://josemanuel80.github.io/the-game/
